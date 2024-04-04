@@ -63,9 +63,11 @@ public class GameRichPresence : MonoBehaviour
         if (stats != null)
         {
 
-                client.SetPresence(new DiscordRPC.RichPresence()
+            int views1 = BigNumbers.GetScoreToViews((float)SurfaceNetworkHandler.RoomStats.CurrentQuota, GameAPI.CurrentDay);
+            int views2 = BigNumbers.GetScoreToViews((float)SurfaceNetworkHandler.RoomStats.QuotaToReach, GameAPI.CurrentDay);
+            client.SetPresence(new DiscordRPC.RichPresence()
                 {
-                    Details = "Views: " + BigNumbers.ViewsToString(stats.CurrentQuota * 10) + "/" + BigNumbers.ViewsToString(stats.QuotaToReach * 10) + " | Money: " + stats.Money,
+                    Details = "Views: " + BigNumbers.ViewsToString(views1) + "/" + BigNumbers.ViewsToString(views2) + " | Money: " + stats.Money,
                     State = locationNames[currentScene],
                     Assets = new Assets()
                     {
